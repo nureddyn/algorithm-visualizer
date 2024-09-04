@@ -16,8 +16,18 @@ function selectionSort(arr: Array<number>): Array<number> {
 };
 
 
-function insertionSort(input: Array<number>): Array<number> {
-    return input;
+function insertionSort(arr: Array<number>): Array<number> {
+    let n = arr.length;
+    for (let i = 0; i < n; i++) {
+        let j = i - 1;
+        let k = arr[i];
+        while (j > -1 && arr[j] > k) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = k
+    }
+    return arr;
 };
 
 
