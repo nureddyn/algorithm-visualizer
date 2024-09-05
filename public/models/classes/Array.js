@@ -1,3 +1,4 @@
+import algorithms from "../../algorithms.js";
 export default class CustomArray extends Array {
     constructor(arrayBody) {
         super();
@@ -6,5 +7,6 @@ export default class CustomArray extends Array {
     executeSort() {
         // return algorithms.selectionSort(this.arrayBody);
         // return algorithms.insertionSort(this.arrayBody);
+        return algorithms.mergeSort(this.arrayBody);
     }
 }

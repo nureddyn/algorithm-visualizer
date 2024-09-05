@@ -11,5 +11,6 @@ export default class CustomArray<T> extends Array<T> {
     executeSort() {
         // return algorithms.selectionSort(this.arrayBody);
         // return algorithms.insertionSort(this.arrayBody);
+        return algorithms.mergeSort(this.arrayBody);
     }
 }

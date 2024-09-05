@@ -31,13 +31,35 @@ function insertionSort(arr: Array<number>): Array<number> {
 };
 
 
-interface mergeSortArray {
-    array: Array<number>;
-    length: number;
-}
 
-function mergeSort(input: mergeSortArray): mergeSortArray {
-    return {array: input.array, length: input.length}
+function mergeSort(arr: Array<number>): Array<number> {
+    let n = arr.length;
+    if (n == 1) return arr;
+
+    let a = mergeSort(arr.slice(0,(n/2)));
+    let b = mergeSort(arr.slice(n/2, n));
+    let m = n/2;
+    let i = 0, j = 0;
+    let result = [];
+    while (i < m && j < m) {
+        if (a[i] <= b[j]) {
+            result.push(a[i]);
+            i++;
+        } else {
+            result.push(b[j]);
+            j++;
+        }
+    }
+    if (i < m) {
+        for (let k = i; k < m; k++) {
+            result.push(a[k]);
+        }
+    } else if (j < m) {
+        for (let l = j; l < m; l++) {
+            result.push(b[j]);
+        }
+    }
+    return result;
 };
 
 
