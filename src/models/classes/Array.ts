@@ -1,16 +1,24 @@
 import algorithms from "../../algorithms.js";
 
-export default class CustomArray<T> extends Array<T> {
-    arrayBody: Array<number>;
+export default class NumberArray extends Array<number> {
 
-    constructor(arrayBody: Array<number>) {
-        super();
-        this.arrayBody = arrayBody;
+    constructor(items : number[]) {
+        super(...items);
+        this.checkElementType(items);
+    }
+
+    checkElementType(items: number[]) {
+        for (const item of items) {
+            if (typeof item !== 'number') {
+                throw new TypeError('All elements must be numbers');
+            }
+        }
     }
 
     executeSort() {
         // return algorithms.selectionSort(this.arrayBody);
         // return algorithms.insertionSort(this.arrayBody);
-        return algorithms.mergeSort(this.arrayBody);
+        return algorithms.mergeSort([...this]);
     }
+
 }

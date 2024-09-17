@@ -1,3 +1,5 @@
 node_modules/
-public/*.js
+public/**/*.js
+!public/index.html
+!public/styles.css
 merge_main.sh.save
