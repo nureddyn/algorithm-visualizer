@@ -1,4 +1,4 @@
-import algorithms from "../../algorithms.js";
+import algorithms from "../../algorithms";
 
 export default class NumberArray extends Array<number> {
 

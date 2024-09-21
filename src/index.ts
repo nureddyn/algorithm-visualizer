@@ -1,5 +1,5 @@
-import algorithms from './algorithms.js';
-import NumberArray from './models/classes/Array.js';
+import algorithms from './algorithms';
+import NumberArray from './models/classes/Array';
 
 const arr: NumberArray = new NumberArray([6,5,4,3,2,1]);
 const len = arr.length;
