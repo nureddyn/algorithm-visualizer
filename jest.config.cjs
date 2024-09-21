@@ -5,6 +5,6 @@ module.exports = {
       '^.+\\.ts$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-    testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+    testMatch: ['**/src/**/*.test.ts', '**/public/**/*.test.ts'],
   };
   
