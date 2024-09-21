@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --config webpack.config.js",
-    "start": "webpack serve --config webpack.config.js --mode development"
+    "start": "npm run build && webpack serve --config webpack.config.js --mode development"
   },
   "keywords": [],
   "author": "",
