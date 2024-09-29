@@ -1,6 +1,8 @@
 
-function selectionSort(arr: Array<number>): Array<number> {    
+function selectionSort(arr: Array<number>): Array<number> {
     let n = arr.length;
+    if (n <= 1) return arr;
+
     for (let i = 0; i < n-1; i++) {
         let min_inx = i;
         for (let j = i+1; j < n; j++) {
@@ -34,7 +36,7 @@ function insertionSort(arr: Array<number>): Array<number> {
 
 function mergeSort(arr: Array<number>): Array<number> {
     let n = arr.length;
-    if (n == 1) return arr;
+    if (n == 1 || n == 0) return arr;
 
     let a = mergeSort(arr.slice(0,(n/2)));
     let b = mergeSort(arr.slice(n/2, n));
