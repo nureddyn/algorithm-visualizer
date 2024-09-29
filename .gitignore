@@ -1,5 +1,5 @@
 node_modules/
-dist/*
+dist/
 !public/index.html
 public/**/*.js
 !public/index.html
