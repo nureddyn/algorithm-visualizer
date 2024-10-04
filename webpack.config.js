@@ -14,6 +14,9 @@ export default {
   },
   resolve: {
     extensions: ['.ts', '.js'],
+    alias: {
+      'plotly.js-dist': path.resolve(__dirname, 'node_modules/plotly.js-dist'), // Add Plotly alias
+    },
   },
   module: {
     rules: [
@@ -25,8 +28,13 @@ export default {
     ],
   },
   devServer: {
-    static: path.join(__dirname, 'dist'), // use the newly defined __dirname
+    static: {
+      directory: path.join(__dirname, 'public')
+    }, // use the newly defined __dirname
     compress: true,
     port: 9000,
+    historyApiFallback: {
+      index: '/index.html'
+    },
   },
 };

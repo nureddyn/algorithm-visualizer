@@ -15,6 +15,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.13",
     "@types/node": "^22.5.5",
+    "@types/plotly.js": "^2.33.4",
     "@types/webpack-dev-server": "^4.7.2",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
@@ -24,5 +25,8 @@
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
+  },
+  "dependencies": {
+    "plotly.js-dist": "^2.35.2"
   }
 }
