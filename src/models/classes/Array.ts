@@ -1,3 +1,4 @@
+import { arrayBuffer } from "stream/consumers";
 import algorithms from "../../algorithms";
 
 export default class NumberArray extends Array<number> {
@@ -16,9 +17,13 @@ export default class NumberArray extends Array<number> {
     }
 
     executeSort() {
-        // return algorithms.selectionSort(this.arrayBody);
-        // return algorithms.insertionSort(this.arrayBody);
+        // return algorithms.selectionSort([...this]);
+        // return algorithms.insertionSort([...this]);
         return algorithms.mergeSort([...this]);
+    }
+
+    getValues() {
+        return [...this];
     }
 
 }
