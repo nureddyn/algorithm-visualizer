@@ -1,10 +1,12 @@
 import { arrayBuffer } from "stream/consumers";
 import algorithms from "../../algorithms";
+import { plotAlgorithm } from "../../plotFunctions";
 
 export default class NumberArray extends Array<number> {
 
     constructor(items : number[]) {
-        super(...items);
+        super();
+        this.push(...items);
         this.checkElementType(items);
     }
 
@@ -16,10 +18,8 @@ export default class NumberArray extends Array<number> {
         }
     }
 
-    executeSort() {
-        // return algorithms.selectionSort([...this]);
-        // return algorithms.insertionSort([...this]);
-        return algorithms.mergeSort([...this]);
+    executeSort({algorithm= ''}) {
+        return plotAlgorithm([...this], algorithm);
     }
 
     getValues() {

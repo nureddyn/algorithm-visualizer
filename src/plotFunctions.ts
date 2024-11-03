@@ -1,20 +1,70 @@
 import * as Plotly from 'plotly.js-dist';
+import NumberArray from './models/classes/Array';
+import algorithms from './algorithms';
+import { algorithmOptions } from './models/listOfAlgorithms';
 
-export function createPlot(divId:string, data: any[], layout:any) {
-  return Plotly.newPlot('myDiv', data, layout);
+// Test unit
+export function createPlot(arr: NumberArray) {
+
+  const plotData: any[] = [
+    {
+      // x is the index of each number
+      x: [...Array(arr.length).keys()],
+      // y is the value of each number
+      y: arr.getValues(),
+      type: 'bar',
+      mode: 'lines+markers',
+      name: 'Algorithm Output'
+    },
+  ];
+  
+  const layout: any = {
+    title: 'Dynamic Plot',
+  };
+
+  return {plotData, layout};
+
 }
 
 
-
-export function updatePlot(arr: number[]): Promise<void> {
-    
-  return new Promise((resolve) => {
-      Plotly.react('myDiv', [{
-        x: [...Array(arr.length).keys()],
-        y: arr,
-        type: 'bar',
-      }]);
+// Test unit
+export function updatePlot(arr: number[]) {
   
-      setTimeout(() => resolve(), 500);
-    });
+  const plotData = [{
+    x: [...Array(arr.length).keys()],
+    y: arr,
+    type: 'bar',
+  }];
+
+  Plotly.react('myDiv', plotData);
+  return {plotData};
+}
+
+
+// Test unit (how to test a function that does not return anything?)
+// Do I need to mock external functions? (updatePlot & setTimeout)
+export function runPlot(stateLog: number[][]) {
+  let i = 0;
+  function nextStep() {
+    if (i < stateLog.length) {
+      updatePlot(stateLog[i])
+      i++;
+      setTimeout(nextStep, 500);
+    }
+  }
+  nextStep();
+  return stateLog;
+}
+
+
+const selectionSort = algorithms.selectionSort;
+export function plotAlgorithm(arr: Array<number>, algorithm: string) {
+  let stateLog: number[][] = [];
+  // Run sort algorithm and update stateLog
+  if (algorithm in algorithmOptions) {
+    algorithmOptions[algorithm as keyof typeof algorithmOptions](arr, true, stateLog);
+  }
+
+  // Run plot function with updated stateLog
+  runPlot(stateLog);
 }
