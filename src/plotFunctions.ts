@@ -49,7 +49,7 @@ export function runPlot(stateLog: number[][]) {
     if (i < stateLog.length) {
       updatePlot(stateLog[i])
       i++;
-      setTimeout(nextStep, 500);
+      setTimeout(nextStep, 50);
     }
   }
   nextStep();
@@ -57,9 +57,8 @@ export function runPlot(stateLog: number[][]) {
 }
 
 
-const selectionSort = algorithms.selectionSort;
 export function plotAlgorithm(arr: Array<number>, algorithm: string) {
-  let stateLog: number[][] = [];
+  let stateLog: number[][] = [arr];
   // Run sort algorithm and update stateLog
   if (algorithm in algorithmOptions) {
     algorithmOptions[algorithm as keyof typeof algorithmOptions](arr, true, stateLog);

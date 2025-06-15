@@ -1,8 +1,16 @@
+import { randomBytes } from 'crypto';
 import NumberArray from './models/classes/Array';
 import { createPlot } from './plotFunctions';
 import * as Plotly from 'plotly.js-dist';
 
-const arr: NumberArray = new NumberArray([6,5,4,3,2,1]);
+let arr2 = [];
+for (let i = 0; i < 200; i++) {
+  let min = Math.ceil(1);
+  let max = Math.floor(200);
+  arr2.push(Math.floor(Math.random() * (max - min + 1)) + min);
+}
+console.log(arr2);
+const arr: NumberArray = new NumberArray(arr2);
 const len = arr.length;
 
 
@@ -15,7 +23,7 @@ const executeButton =  document.getElementById('execute');
 if (executeButton) {
   executeButton.onclick = () => {
     // Choose between selectionSort, insertionSort, and mergeSort
-    arr.executeSort({algorithm: 'insertionSort'});
+    arr.executeSort({algorithm: 'mergeSort'});
   };
 }
 

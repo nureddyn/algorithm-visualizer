@@ -1,84 +1,100 @@
 import { runPlot, updatePlot } from './plotFunctions';
 
-function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
-    let n = arr.length;
-    if (toPlot) stateLog.push([...arr]);  // <<<--- Add the first unsorted array to stateLog?
+// function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
+//     let n = arr.length;
+//     if (toPlot) stateLog.push([...arr]);  // <<<--- Add the first unsorted array to stateLog?
 
-    if (n <= 1) return arr;
+//     if (n <= 1) return arr;
 
-    for (let i = 0; i < n-1; i++) {
-        let min_inx = i;
-        for (let j = i+1; j < n; j++) {
-            if (arr[j] < arr[min_inx]) min_inx = j;
-        }
-        if (min_inx != i) {
-            let tmp = arr[i];
-            arr[i] = arr[min_inx];
-            arr[min_inx] = tmp;
+//     for (let i = 0; i < n-1; i++) {
+//         let min_inx = i;
+//         for (let j = i+1; j < n; j++) {
+//             if (arr[j] < arr[min_inx]) min_inx = j;
+//         }
+//         if (min_inx != i) {
+//             let tmp = arr[i];
+//             arr[i] = arr[min_inx];
+//             arr[min_inx] = tmp;
 
-            if (toPlot) stateLog.push([...arr]);
-        }
-    }
-    return arr;
-};
+//             if (toPlot) stateLog.push([...arr]);
+//         }
+//     }
+//     return arr;
+// };
 
 
-function insertionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
-    let n = arr.length;
-    for (let i = 0; i < n; i++) {
-        let j = i - 1;
-        let k = arr[i];
-        while (j > -1 && arr[j] > k) {
-            arr[j+1] = arr[j];
-            j--;
+// function insertionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
+//     let n = arr.length;
+//     for (let i = 0; i < n; i++) {
+//         let j = i - 1;
+//         let k = arr[i];
+//         while (j > -1 && arr[j] > k) {
+//             arr[j+1] = arr[j];
+//             j--;
 
-            if (toPlot) stateLog.push([...arr]);
-        }
-        arr[j+1] = k
+//             if (toPlot) stateLog.push([...arr]);
+//         }
+//         arr[j+1] = k
 
-        if (toPlot) stateLog.push([...arr]);
-    }
-    return arr;
-};
+//         if (toPlot) stateLog.push([...arr]);
+//     }
+//     return arr;
+// };
 
 
 // This approach does not allow to plot all the elements in the array at every state.
-// Consider modify it, by passing the original array at any recursive call
+// Consider modify it, by passing the currentArray array at any recursive call, and the element index of the currentArray sub-array 
 function mergeSort(arr: Array<number>, toPlot=false, stateLog: number[][]): Array<number> {
-    let n = arr.length;
-    if (n == 1 || n == 0) return arr;
+    let currentArray: Array<number> = arr;
 
-    let a = toPlot ?
-    mergeSort(arr.slice(0,(n/2)), true, stateLog) :
-    mergeSort(arr.slice(0,(n/2)), false, stateLog);
+    function mergeSortImplementation(arr: Array<number>, toPlot=false, stateLog: number[][], side: string=""): Array<number> {
+        let n = arr.length;
+        if (n == 1 || n == 0) return arr;
 
-    let b = toPlot ?
-    mergeSort(arr.slice(n/2, n), true, stateLog) :
-    mergeSort(arr.slice(n/2, n), true, stateLog);
-    
-    let m = n/2;
-    let i = 0, j = 0;
-    let result = [];
-    while (i < m && j < m) {
-        if (a[i] <= b[j]) {
-            result.push(a[i]);
-            i++;
-        } else {
-            result.push(b[j]);
-            j++;
+        let a = arr.slice(0,(n/2));
+        a = toPlot ?
+        mergeSortImplementation(a, true, stateLog, "left") :
+        mergeSortImplementation(a, false, stateLog, "left");
+
+        let b = arr.slice(n/2, n);
+        b = toPlot ?
+        mergeSortImplementation(b, true, stateLog, "right") :
+        mergeSortImplementation(b, true, stateLog, "right");
+        
+        let m = n/2;
+        let i = 0, j = 0;
+        let result = [];
+        while (i < m && j < m) {
+            if (a[i] <= b[j]) {
+                result.push(a[i]);
+                i++;
+            } else {
+                result.push(b[j]);
+                j++;
+            }
         }
+        if (i < m) {
+            for (let k = i; k < m; k++) {
+                result.push(a[k]);
+            }
+        } else if (j < m) {
+            for (let l = j; l < m; l++) {
+                result.push(b[j]);
+            }
+        }
+        let concatIndex = result.length;
+        // Concatenate result subarray
+        if (side == "left" || side == "") {
+            currentArray = result.concat(currentArray.slice(concatIndex))
+        } 
+        else if (side == "right") {
+            currentArray = currentArray.slice(0,currentArray.length-concatIndex).concat(result)
+        }
+        if (toPlot) stateLog.push([...currentArray]);
+        return result;
     }
-    if (i < m) {
-        for (let k = i; k < m; k++) {
-            result.push(a[k]);
-        }
-    } else if (j < m) {
-        for (let l = j; l < m; l++) {
-            result.push(b[j]);
-        }
-    }
-    if (toPlot) stateLog.push([...result]);
-    return result;
+    return mergeSortImplementation(arr, toPlot, stateLog);
 };
 
-export default {selectionSort, insertionSort, mergeSort};
+// export default {selectionSort, insertionSort, mergeSort};
+export default {mergeSort};
