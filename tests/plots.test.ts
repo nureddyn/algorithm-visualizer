@@ -4,9 +4,6 @@ import * as plotFunctions from '../src/runPlot';
 import NumberArray from "../src/models/classes/Array";
 import { after } from "node:test";
 
-const selectionSort = algorithms.selectionSort;
-// const insertionSort = algorithms.insertionSort;
-const mergeSort = algorithms.mergeSort;
 
 // Mocking jest units
 jest.mock('plotly.js-dist', () => ({
