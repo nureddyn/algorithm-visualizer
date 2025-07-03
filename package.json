@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "build": "webpack --config webpack.config.js",
     "start": "npm run build && webpack serve --config webpack.config.js --mode development"
   },

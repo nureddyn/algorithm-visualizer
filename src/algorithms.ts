@@ -1,45 +1,44 @@
-import { runPlot, updatePlot } from './plotFunctions';
 
-// function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
-//     let n = arr.length;
-//     if (toPlot) stateLog.push([...arr]);  // <<<--- Add the first unsorted array to stateLog?
+function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
+    let n = arr.length;
+    if (toPlot) stateLog.push([...arr]);  // <<<--- Add the first unsorted array to stateLog?
 
-//     if (n <= 1) return arr;
+    if (n <= 1) return arr;
 
-//     for (let i = 0; i < n-1; i++) {
-//         let min_inx = i;
-//         for (let j = i+1; j < n; j++) {
-//             if (arr[j] < arr[min_inx]) min_inx = j;
-//         }
-//         if (min_inx != i) {
-//             let tmp = arr[i];
-//             arr[i] = arr[min_inx];
-//             arr[min_inx] = tmp;
+    for (let i = 0; i < n-1; i++) {
+        let min_inx = i;
+        for (let j = i+1; j < n; j++) {
+            if (arr[j] < arr[min_inx]) min_inx = j;
+        }
+        if (min_inx != i) {
+            let tmp = arr[i];
+            arr[i] = arr[min_inx];
+            arr[min_inx] = tmp;
 
-//             if (toPlot) stateLog.push([...arr]);
-//         }
-//     }
-//     return arr;
-// };
+            if (toPlot) stateLog.push([...arr]);
+        }
+    }
+    return arr;
+};
 
 
-// function insertionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
-//     let n = arr.length;
-//     for (let i = 0; i < n; i++) {
-//         let j = i - 1;
-//         let k = arr[i];
-//         while (j > -1 && arr[j] > k) {
-//             arr[j+1] = arr[j];
-//             j--;
+function insertionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
+    let n = arr.length;
+    for (let i = 0; i < n; i++) {
+        let j = i - 1;
+        let k = arr[i];
+        while (j > -1 && arr[j] > k) {
+            arr[j+1] = arr[j];
+            j--;
 
-//             if (toPlot) stateLog.push([...arr]);
-//         }
-//         arr[j+1] = k
+            if (toPlot) stateLog.push([...arr]);
+        }
+        arr[j+1] = k
 
-//         if (toPlot) stateLog.push([...arr]);
-//     }
-//     return arr;
-// };
+        if (toPlot) stateLog.push([...arr]);
+    }
+    return arr;
+};
 
 
 // This approach does not allow to plot all the elements in the array at every state.
@@ -96,5 +95,5 @@ function mergeSort(arr: Array<number>, toPlot=false, stateLog: number[][]): Arra
     return mergeSortImplementation(arr, toPlot, stateLog);
 };
 
-// export default {selectionSort, insertionSort, mergeSort};
-export default {mergeSort};
+export default {selectionSort, insertionSort, mergeSort};
+// export default {mergeSort, selectionSort};
