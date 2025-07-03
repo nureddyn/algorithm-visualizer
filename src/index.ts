@@ -1,6 +1,6 @@
 import { randomBytes } from 'crypto';
 import NumberArray from './models/classes/Array';
-import { createPlot } from './plotFunctions';
+import { createPlot } from './runPlot';
 import * as Plotly from 'plotly.js-dist';
 
 let arr2 = [];

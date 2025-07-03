@@ -1,6 +1,6 @@
 import { arrayBuffer } from "stream/consumers";
 import algorithms from "../../algorithms";
-import { plotAlgorithm } from "../../plotFunctions";
+import { plotAlgorithm } from "../../plotAlgorithm";
 
 export default class NumberArray extends Array<number> {
 

@@ -6,5 +6,17 @@ module.exports = {
     },
     moduleFileExtensions: ['ts', 'js', 'json', 'node'],
     testMatch: ['**/tests/**/*.test.ts'],
+    collectCoverage: true,
+    coverageDirectory: 'coverage',
+    coverageReporters: ['text', 'lcov'],
+    coverageThreshold: {
+      global: {
+        branches: 70,
+        functions: 70,
+        lines: 70,
+        statements: 70,
+      },
+    },
+
   };
   
