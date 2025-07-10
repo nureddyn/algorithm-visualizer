@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 // Mocks
 jest.mock('../src/runPlot', () => ({
   __esModule: true,
@@ -7,16 +9,17 @@ jest.mock('../src/runPlot', () => ({
 jest.mock('../src/algorithms', () => ({
   __esModule: true,
   default: {
-    selectionSort: jest.fn((arr, _, stateLog) => {
-      stateLog.push([1, 2]);
+    selectionSort: jest.fn((arr: number[], _?: unknown, stateLog?: number[][]) => {
+      stateLog?.push([1, 2]);
     }),
   },
 }));
 
 // Import after mocking
-const { plotAlgorithm } = require('../src/plotAlgorithm');
-const { runPlot } = require('../src/runPlot');
-const algorithms = require('../src/algorithms').default;
+import { plotAlgorithm } from '../src/plotAlgorithm';
+import { runPlot } from '../src/runPlot';
+import algorithms from '../src/algorithms';
+
 
 test('plotAlgorithm should call selectionSort and runPlot correctly', () => {
   const input = [2, 1];

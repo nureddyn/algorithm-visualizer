@@ -1,8 +1,6 @@
-import algorithms from "../src/algorithms";
 import * as plotBuilders from '../src/plotBuilders'
 import * as plotFunctions from '../src/runPlot';
 import NumberArray from "../src/models/classes/Array";
-import { after } from "node:test";
 
 
 // Mocking jest units

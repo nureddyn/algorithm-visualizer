@@ -1,4 +1,4 @@
-import { extendTraces } from "plotly.js";
+// import { extendTraces } from "plotly.js";
 
 declare module 'plotly.js-dist' {
     // Define the structure for the data type
@@ -6,13 +6,13 @@ declare module 'plotly.js-dist' {
       x: number[];
       y: number[];
       type: string;
-      [key: string]: any; // Allow additional properties
+      [key: string]: unknown; // Allow additional properties
     }
   
     // Define the structure for the layout type
     interface Layout {
       title?: string;
-      [key: string]: any; // Allow additional properties
+      [key: string]: unknown; // Allow additional properties
     }
   
     // Export the Plotly object directly with the method
@@ -22,17 +22,17 @@ declare module 'plotly.js-dist' {
       layout?: Layout
     ): void;
 
-    export function extendTraces(
-      divId: string | HTMLElement,
-      steps: number[][],
-      layout?: Layout
-    ): void;
+    // export function extendTraces(
+    //   divId: string | HTMLElement,
+    //   steps: number[][],
+    //   layout?: Layout
+    // ): void;
 
     export function react(
       divId: string | HTMLElement,
       data: Data[],
       layout?: Layout,
-      config?: any // Allow additional configuration
+      config?: unknown // Allow additional configuration
     ): void;
   }
   

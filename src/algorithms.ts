@@ -1,6 +1,6 @@
 
 function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
-    let n = arr.length;
+    const n = arr.length;
     if (toPlot) stateLog.push([...arr]);  // <<<--- Add the first unsorted array to stateLog?
 
     if (n <= 1) return arr;
@@ -11,7 +11,7 @@ function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
             if (arr[j] < arr[min_inx]) min_inx = j;
         }
         if (min_inx != i) {
-            let tmp = arr[i];
+            const tmp = arr[i];
             arr[i] = arr[min_inx];
             arr[min_inx] = tmp;
 
@@ -23,10 +23,10 @@ function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
 
 
 function insertionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
-    let n = arr.length;
+    const n = arr.length;
     for (let i = 0; i < n; i++) {
         let j = i - 1;
-        let k = arr[i];
+        const k = arr[i];
         while (j > -1 && arr[j] > k) {
             arr[j+1] = arr[j];
             j--;
@@ -47,7 +47,7 @@ function mergeSort(arr: Array<number>, toPlot=false, stateLog: number[][]): Arra
     let currentArray: Array<number> = arr;
 
     function mergeSortImplementation(arr: Array<number>, toPlot=false, stateLog: number[][], side: string=""): Array<number> {
-        let n = arr.length;
+        const n = arr.length;
         if (n == 1 || n == 0) return arr;
 
         let a = arr.slice(0,(n/2));
@@ -60,9 +60,9 @@ function mergeSort(arr: Array<number>, toPlot=false, stateLog: number[][]): Arra
         mergeSortImplementation(b, true, stateLog, "right") :
         mergeSortImplementation(b, true, stateLog, "right");
         
-        let m = n/2;
+        const m = n/2;
         let i = 0, j = 0;
-        let result = [];
+        const result = [];
         while (i < m && j < m) {
             if (a[i] <= b[j]) {
                 result.push(a[i]);
@@ -81,7 +81,7 @@ function mergeSort(arr: Array<number>, toPlot=false, stateLog: number[][]): Arra
                 result.push(b[j]);
             }
         }
-        let concatIndex = result.length;
+        const concatIndex = result.length;
         // Concatenate result subarray
         if (side == "left" || side == "") {
             currentArray = result.concat(currentArray.slice(concatIndex))
