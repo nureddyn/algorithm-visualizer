@@ -14,3 +14,5 @@ export function runPlot(stateLog: number[][]) {
   nextStep();
   return stateLog;
 }
+
+export { createPlot };
