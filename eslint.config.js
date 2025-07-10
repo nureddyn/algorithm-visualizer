@@ -11,4 +11,20 @@ export default [
     //   // por ejemplo: 'semi': ['error', 'always'],
     // },
   },
+  {
+    files: ['tests/**/*.ts'],
+    rules: {
+      // puedes poner reglas específicas para tests si necesitas
+    },
+  },
+  {
+  files: ['*.cjs'],
+  languageOptions: {
+    globals: {
+      module: 'readonly',
+      require: 'readonly',
+    },
+  },
+}
+
 ];

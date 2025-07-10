@@ -17,6 +17,10 @@ module.exports = {
         statements: 70,
       },
     },
+    extensionsToTreatAsEsm: ['.ts'],
+    globals: {
+    'ts-jest': { useESM: true }
+  }
 
   };
   
