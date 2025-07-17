@@ -1,7 +1,7 @@
 
 function selectionSort(arr: Array<number>, toPlot=false, stateLog: number[][]) {
     const n = arr.length;
-    if (toPlot) stateLog.push([...arr]);  // <<<--- Add the first unsorted array to stateLog?
+    if (toPlot) stateLog.push([...arr]);
 
     if (n <= 1) return arr;
 
@@ -96,4 +96,3 @@ function mergeSort(arr: Array<number>, toPlot=false, stateLog: number[][]): Arra
 };
 
 export default {selectionSort, insertionSort, mergeSort};
-// export default {mergeSort, selectionSort};
