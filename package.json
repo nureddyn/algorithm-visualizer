@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "build": "webpack --config webpack.config.js",
-    "start": "npm run build && webpack serve --config webpack.config.js --mode development"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests --ext .ts",
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
   },
   "keywords": [],
   "author": "",
